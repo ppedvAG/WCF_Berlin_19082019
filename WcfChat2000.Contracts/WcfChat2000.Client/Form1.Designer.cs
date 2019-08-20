@@ -31,6 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.userNameTextBox = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.loginButton = new MaterialSkin.Controls.MaterialFlatButton();
+            this.logoutButton = new MaterialSkin.Controls.MaterialFlatButton();
             this.usersListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.sendTextButton = new MaterialSkin.Controls.MaterialFlatButton();
@@ -47,11 +48,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.userNameTextBox, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.loginButton, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.logoutButton, 2, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 72);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -72,7 +75,7 @@
             this.userNameTextBox.SelectedText = "";
             this.userNameTextBox.SelectionLength = 0;
             this.userNameTextBox.SelectionStart = 0;
-            this.userNameTextBox.Size = new System.Drawing.Size(690, 28);
+            this.userNameTextBox.Size = new System.Drawing.Size(594, 28);
             this.userNameTextBox.TabIndex = 0;
             this.userNameTextBox.TabStop = false;
             this.userNameTextBox.Text = "Fred";
@@ -84,7 +87,7 @@
             this.loginButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.loginButton.Depth = 0;
             this.loginButton.Icon = null;
-            this.loginButton.Location = new System.Drawing.Point(700, 6);
+            this.loginButton.Location = new System.Drawing.Point(604, 6);
             this.loginButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.loginButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.loginButton.Name = "loginButton";
@@ -94,6 +97,24 @@
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.MaterialFlatButton1_Click);
+            // 
+            // logoutButton
+            // 
+            this.logoutButton.AutoSize = true;
+            this.logoutButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.logoutButton.Depth = 0;
+            this.logoutButton.Icon = null;
+            this.logoutButton.Location = new System.Drawing.Point(684, 6);
+            this.logoutButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.logoutButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.Primary = false;
+            this.logoutButton.Size = new System.Drawing.Size(88, 36);
+            this.logoutButton.TabIndex = 1;
+            this.logoutButton.Text = "Logout";
+            this.logoutButton.UseVisualStyleBackColor = true;
+            this.logoutButton.Visible = false;
+            this.logoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
             // usersListBox
             // 
@@ -226,6 +247,7 @@
         private MaterialSkin.Controls.MaterialFlatButton sendTextButton;
         private MaterialSkin.Controls.MaterialFlatButton sendPicButton;
         private System.Windows.Forms.ListBox listBox1;
+        private MaterialSkin.Controls.MaterialFlatButton logoutButton;
     }
 }
 

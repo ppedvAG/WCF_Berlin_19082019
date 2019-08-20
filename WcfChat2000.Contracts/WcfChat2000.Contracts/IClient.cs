@@ -13,6 +13,9 @@ namespace WcfChat2000.Contracts
         void LoginResponse(bool ok, string msg);
 
         [OperationContract(IsOneWay = true)]
+        void LogoutResponse(bool ok, string msg);
+
+        [OperationContract(IsOneWay = true)]
         void ShowText(string text);
 
         [OperationContract(IsOneWay = true)]

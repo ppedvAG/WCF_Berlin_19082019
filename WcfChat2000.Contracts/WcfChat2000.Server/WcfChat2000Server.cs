@@ -35,7 +35,17 @@ namespace WcfChat2000.Server
 
         public void Logout()
         {
-            Console.WriteLine($"Logout");
+            var caller = OperationContext.Current.GetCallbackChannel<IClient>();
+            var callerEntry = users.FirstOrDefault(x => x.Value == caller);
+
+            Console.WriteLine($"Logout: {callerEntry.Key}");
+
+            users.Remove(callerEntry.Key);
+
+            caller.ShowText($"bye bye {callerEntry.Key}");
+            caller.LogoutResponse(true, "");
+            ExecuteForAllUsers(x => x.ShowUsers(users.Keys));
+
         }
 
         public void SendPic(Stream pic)

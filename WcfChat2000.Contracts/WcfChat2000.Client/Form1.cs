@@ -32,8 +32,8 @@ namespace WcfChat2000.Client
             sendPicButton.Enabled = false;
 
             listBox1.DrawMode = DrawMode.OwnerDrawVariable;
-            listBox1.DrawItem += ListBox1_DrawItem;
             listBox1.MeasureItem += ListBox1_MeasureItem;
+            listBox1.DrawItem += ListBox1_DrawItem;
         }
 
         private void ListBox1_MeasureItem(object sender, MeasureItemEventArgs e)
@@ -105,6 +105,8 @@ namespace WcfChat2000.Client
 
 
         IServer server;
+        private int myProperty;
+
         private void MaterialFlatButton1_Click(object sender, EventArgs e)
         {
             var netTcp = new NetTcpBinding();
@@ -118,12 +120,18 @@ namespace WcfChat2000.Client
         public void LoginResponse(bool ok, string msg)
         {
             if (!ok)
-            {
                 MessageBox.Show(msg);
-            }
             else
-            {
+                SetUI(true);
 
+
+        }
+
+        private void SetUI(bool loggedIn)
+        {
+            if (loggedIn)
+            {
+                logoutButton.Visible = true;
                 userNameTextBox.Enabled = false;
                 loginButton.Enabled = false;
 
@@ -131,7 +139,19 @@ namespace WcfChat2000.Client
                 sendTextButton.Enabled = true;
                 sendPicButton.Enabled = true;
             }
+            else
+            {
+                logoutButton.Visible = !true;
+                userNameTextBox.Enabled = !false;
+                loginButton.Enabled = !false;
+
+                msgTextBox.Enabled = !true;
+                sendTextButton.Enabled = !true;
+                sendPicButton.Enabled = !true;
+                usersListBox.DataSource = null;
+            }
         }
+
 
         private void SendTextButton_Click(object sender, EventArgs e)
         {
@@ -145,12 +165,26 @@ namespace WcfChat2000.Client
 
         private void SendPicButton_Click(object sender, EventArgs e)
         {
-            var dlg = new OpenFileDialog() { Filter = "Ein Bild|*.png;*.jpg;*.bmp;.gif;" };
+            var dlg = new OpenFileDialog() { Filter = "Ein Bild|*.png;*.jpg;*.bmp;*.gif;" };
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 server.SendPic(File.OpenRead(dlg.FileName));
             }
+        }
+
+        private void LogoutButton_Click(object sender, EventArgs e)
+        {
+            server?.Logout();
+        }
+
+        public void LogoutResponse(bool ok, string msg)
+        {
+            if (ok)
+                SetUI(false);
+            else
+                MessageBox.Show(msg);
+
         }
     }
 }
