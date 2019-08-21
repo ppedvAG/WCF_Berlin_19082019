@@ -16,6 +16,8 @@ namespace WcfChat2000.Server
 
             var tcpBind = new NetTcpBinding();
             tcpBind.MaxReceivedMessageSize = int.MaxValue;
+            tcpBind.Security.Mode = SecurityMode.Message;
+
 
             ServiceHost host = new ServiceHost(typeof(WcfChat2000Server));
             host.AddServiceEndpoint(typeof(IServer), tcpBind, "net.tcp://localhost:1");

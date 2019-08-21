@@ -103,16 +103,18 @@ namespace WcfChat2000.Client
             usersListBox.DataSource = users;
         }
 
-
         IServer server;
-        private int myProperty;
 
         private void MaterialFlatButton1_Click(object sender, EventArgs e)
         {
             var netTcp = new NetTcpBinding();
             netTcp.MaxReceivedMessageSize = int.MaxValue;
+            netTcp.Security.Mode = SecurityMode.Message;
 
-            var cf = new DuplexChannelFactory<IServer>(this, netTcp, new EndpointAddress("net.tcp://localhost:1"));
+            var cf = new DuplexChannelFactory<IServer>(this, netTcp, new EndpointAddress("net.tcp://192.168.2.39:1"));
+            cf.Credentials.Windows.ClientCredential.UserName = "Fred";
+            cf.Credentials.Windows.ClientCredential.Password = "123456";
+
             server = cf.CreateChannel();
             server.Login(userNameTextBox.Text);
         }

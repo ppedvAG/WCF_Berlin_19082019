@@ -44,6 +44,8 @@ namespace WcfChat2000.Server
 
             caller.ShowText($"bye bye {callerEntry.Key}");
             caller.LogoutResponse(true, "");
+
+
             ExecuteForAllUsers(x => x.ShowUsers(users.Keys));
 
         }
